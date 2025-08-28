@@ -1,29 +1,109 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.2.2 Chrome/134.0.6998.178 Electron/35.1.2 Safari/537.36" version="26.2.2" pages="2">
-  <diagram name="Card" id="HZpscgzUpNiNYTY__BLO">
-    <mxGraphModel dx="1282" dy="750" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+  <diagram id="fYAnQfJ2kPsiRUPgGIwj" name="Scenes">
+    <mxGraphModel dx="2350" dy="1375" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="A9JNB4-GJ1p8jw1KRJ86-21" value="Card" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="120" y="120" width="140" height="150" as="geometry" />
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-8" value="Game Loop" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="90" width="620" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="A9JNB4-GJ1p8jw1KRJ86-22" value="Name" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="A9JNB4-GJ1p8jw1KRJ86-21">
-          <mxGeometry y="30" width="140" height="30" as="geometry" />
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="H9E2thH1o8KiOX0yPpDB-8" source="H9E2thH1o8KiOX0yPpDB-1" target="H9E2thH1o8KiOX0yPpDB-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="210" y="100" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="A9JNB4-GJ1p8jw1KRJ86-23" value="Type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="A9JNB4-GJ1p8jw1KRJ86-21">
-          <mxGeometry y="60" width="140" height="30" as="geometry" />
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-1" value="Game Scene 1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="H9E2thH1o8KiOX0yPpDB-8">
+          <mxGeometry x="10" y="80" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="A9JNB4-GJ1p8jw1KRJ86-24" value="..." style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="A9JNB4-GJ1p8jw1KRJ86-21">
-          <mxGeometry y="90" width="140" height="30" as="geometry" />
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="H9E2thH1o8KiOX0yPpDB-8" source="H9E2thH1o8KiOX0yPpDB-3" target="H9E2thH1o8KiOX0yPpDB-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="100.28571428571433" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="A9JNB4-GJ1p8jw1KRJ86-25" value="CardAction[]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="A9JNB4-GJ1p8jw1KRJ86-21">
-          <mxGeometry y="120" width="140" height="30" as="geometry" />
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-3" value="Game Scene 2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="H9E2thH1o8KiOX0yPpDB-8">
+          <mxGeometry x="170" y="80" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="H9E2thH1o8KiOX0yPpDB-8" source="H9E2thH1o8KiOX0yPpDB-5" target="H9E2thH1o8KiOX0yPpDB-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="490" y="100.28571428571433" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-5" value="........" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="H9E2thH1o8KiOX0yPpDB-8">
+          <mxGeometry x="330" y="80" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="H9E2thH1o8KiOX0yPpDB-8" source="H9E2thH1o8KiOX0yPpDB-7" target="H9E2thH1o8KiOX0yPpDB-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-7" value="Game Scene N" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="H9E2thH1o8KiOX0yPpDB-8">
+          <mxGeometry x="490" y="80" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-11" value="Scene pass" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="360" width="360" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="H9E2thH1o8KiOX0yPpDB-11" source="H9E2thH1o8KiOX0yPpDB-12">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-12" value="Take Card Scene" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="H9E2thH1o8KiOX0yPpDB-11">
+          <mxGeometry x="40" y="80" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-14" value="Monster Battle Scene" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="H9E2thH1o8KiOX0yPpDB-11">
+          <mxGeometry x="40" y="200" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-18" value="Player take monster card" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;dashed=1;" edge="1" parent="H9E2thH1o8KiOX0yPpDB-11" source="H9E2thH1o8KiOX0yPpDB-15">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="160" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="260" y="160" />
+              <mxPoint x="130" y="160" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-15" value="Player" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="H9E2thH1o8KiOX0yPpDB-11">
+          <mxGeometry x="200" y="80" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-21" value="Action providing" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="720" width="410" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-33" value="Scene: Take card" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="H9E2thH1o8KiOX0yPpDB-21">
+          <mxGeometry x="20" y="50" width="370" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-29" value="Role: Who takes a card" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="H9E2thH1o8KiOX0yPpDB-33" source="H9E2thH1o8KiOX0yPpDB-23" target="H9E2thH1o8KiOX0yPpDB-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-23" value="Action Provider 1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="H9E2thH1o8KiOX0yPpDB-33">
+          <mxGeometry x="25" y="40" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-31" value="Role: Other player" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="H9E2thH1o8KiOX0yPpDB-33" source="H9E2thH1o8KiOX0yPpDB-25" target="H9E2thH1o8KiOX0yPpDB-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-25" value="Action Provider N" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="H9E2thH1o8KiOX0yPpDB-33">
+          <mxGeometry x="265" y="40" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-30" value="Role: Other player" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="H9E2thH1o8KiOX0yPpDB-33" source="H9E2thH1o8KiOX0yPpDB-24" target="H9E2thH1o8KiOX0yPpDB-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-24" value="Action Provider 2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="H9E2thH1o8KiOX0yPpDB-33">
+          <mxGeometry x="145" y="40" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-26" value="Player 1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="H9E2thH1o8KiOX0yPpDB-33">
+          <mxGeometry x="25" y="160" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-27" value="Player 2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="H9E2thH1o8KiOX0yPpDB-33">
+          <mxGeometry x="145" y="160" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-28" value="Player N" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="H9E2thH1o8KiOX0yPpDB-33">
+          <mxGeometry x="265" y="160" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="H9E2thH1o8KiOX0yPpDB-35" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Game scene&lt;/h1&gt;&lt;div&gt;object, that provides a state of game stage.&amp;nbsp;&amp;nbsp;Depending on the role of the player, it gives him actions that they can change the internal state of the scene&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="500" y="310" width="310" height="230" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram id="h6ruCUIWY0IHE0oRRo0T" name="Actions">
-    <mxGraphModel dx="742" dy="434" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+  <diagram id="OS84w8LLS4DcoBJcYNrH" name="Client and player">
+    <mxGraphModel dx="1410" dy="825" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />

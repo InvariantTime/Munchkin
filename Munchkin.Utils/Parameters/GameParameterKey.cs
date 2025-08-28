@@ -1,6 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
 
-namespace Munchkin.GameModel.Parameters;
+namespace Munchkin.Utils.Parameters;
 
 public sealed class GameParameterKey<T> : ValueObject, IGameParameterKey
 {

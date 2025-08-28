@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Immutable;
 
-namespace Munchkin.GameModel.Parameters;
+namespace Munchkin.Utils.Parameters;
 
 public class GameParameterContainer : IGameParameterContainer
 {

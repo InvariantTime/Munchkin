@@ -1,4 +1,4 @@
-﻿namespace Munchkin.GameModel.Parameters;
+﻿namespace Munchkin.Utils.Parameters;
 
 public class ImmutableGameParameter<T> : IGameParameter<T>
 {
