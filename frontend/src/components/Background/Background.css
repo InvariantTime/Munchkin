@@ -1,0 +1,51 @@
+.dungeon-background
+{
+    position: absolute;
+    background-color: #455e80;
+    width: 100%;
+    height: 100%;
+}
+
+.floor-background
+{
+    position: absolute;
+    background-size: 25%;
+    width: 100%;
+    height: 40%;
+    bottom: 0;
+}
+
+.floor-background::before
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(0deg, 
+        transparent 0%, 
+        rgba(0, 0, 0, 0) 0%, 
+        rgba(0, 0, 0, 0.7) 100%, 
+        transparent 0%);
+}
+
+.character
+{
+    position: absolute;
+    background-image: url("../../assets/munchkin.png");
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center bottom;
+    width: 30%;
+    height: 30%;
+    animation: character-animation 3s linear infinite;
+}
+
+@keyframes character-animation
+{
+    0% { transform: scaleY(1) translateY(2.25%); }
+    50% { transform: scaleY(1.08) translateY(-2.25%); }
+    100% { transform: scaleY(1) translateY(2.25%); }
+}

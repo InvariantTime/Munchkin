@@ -1,0 +1,28 @@
+
+.loginButton
+{
+    display: flex;
+    background-color: #7a4e27;
+    border-radius: 15px;
+    width: 100px;
+    height: 40px;
+    align-items: center;
+    justify-items: center;
+    color: white;
+    font-weight: bold;
+}
+
+.loginButton::after
+{
+    content: '';
+    background: linear-gradient(45deg, 
+        #eeeeee 75%,
+        #333333 75%);
+    animation: loginGlare 3s  linear infinite;
+}
+
+@keyframes loginGlare
+{
+    0% {transform: translateX(-100%);}
+    100% {transform: translateX(100%);}
+}
