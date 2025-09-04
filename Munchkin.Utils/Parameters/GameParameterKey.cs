@@ -1,8 +1,6 @@
-﻿using CSharpFunctionalExtensions;
+﻿namespace Munchkin.Utils.Parameters;
 
-namespace Munchkin.Utils.Parameters;
-
-public sealed class GameParameterKey<T> : ValueObject, IGameParameterKey
+public sealed class GameParameterKey<T> : IEquatable<GameParameterKey<T>>, IGameParameterKey
 {
     public string Name { get; }
 
@@ -18,9 +16,24 @@ public sealed class GameParameterKey<T> : ValueObject, IGameParameterKey
         DefaultValue = defaultValue;
     }
 
-    protected override IEnumerable<object> GetEqualityComponents()
+    public bool Equals(GameParameterKey<T>? other)
     {
-        yield return Name;
-        yield return typeof(T);
+        if (other == null)
+            return false;
+
+        return Name == other.Name;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is not GameParameterKey<T> other)
+            return false;
+
+        return Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Name, Type);
     }
 }
