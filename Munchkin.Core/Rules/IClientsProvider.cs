@@ -2,11 +2,9 @@
 
 public interface IClientsProvider
 {
-    IClientContext Executor { get; }
+    IClientAccessor Current { get; }
 
-    IClientContext Current { get; }
+    IClientAccessor Others { get; }
 
-    IClientContext Others { get; }
-
-    IClientContext All { get; }
+    IClientAccessor All { get; }
 }

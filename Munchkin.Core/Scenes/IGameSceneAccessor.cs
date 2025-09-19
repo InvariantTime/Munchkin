@@ -4,5 +4,5 @@ public interface IGameSceneAccessor<T> where T : IGameScene
 {
     T Current { get; }
 
-    void SetCurrent(IGameScene scene);
+    void SetCurrent<TNew>() where TNew : IGameScene;//TODO: parameters ?
 }
