@@ -9,7 +9,7 @@ public interface IGameParameter
 
 public interface IGameParameter<T> : IGameParameter
 {
-    GameParameterKey<T> Key { get; }
+    new GameParameterKey<T> Key { get; }
 
-    T? Value { get; }
+    new T? Value { get; }
 }
