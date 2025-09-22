@@ -1,4 +1,4 @@
-using Munchkin.GameModel.Parameters;
+using Munchkin.Utils.Parameters;
 
 namespace Munchkin.Tests.Parameters;
 

@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Munchkin.GameModel\Munchkin.GameModel.csproj" />
+    <ProjectReference Include="..\Munchkin.Utils\Munchkin.Utils.csproj" />
   </ItemGroup>
 
   <ItemGroup>
