@@ -4,17 +4,17 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Munchkin.Core.Rules;
 
-public interface IGameRuleContext<T> where T : IGameScene
+public interface IGameRuleContext
 {
     IClientsProvider Clients { get; }
-
-    IGameSceneAccessor<T> Scenes { get; }
 
     IGameActionAccessor Action { get; }
 
     bool TryGet<TParam>([NotNullWhen(true)]out TParam? result);
 }
 
-public interface IGameRuleContext : IGameRuleContext<IGameScene>
+public interface IGameRuleContext<T> : IGameRuleContext
+    where T : IGameScene
 {
+    IGameSceneAccessor<T> Scenes { get; }
 }
