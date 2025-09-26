@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace Munchkin.Core.Parameters;
 
@@ -48,7 +47,7 @@ public class ParameterKey<T> : IParameterKey, IEquatable<ParameterKey<T>>,
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(Id);
+        return Id.GetHashCode();
     }
 
     public static bool operator ==(ParameterKey<T>? left, ParameterKey<T>? right)

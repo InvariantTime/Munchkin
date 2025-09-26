@@ -4,14 +4,14 @@ namespace Munchkin.Core.Parameters;
 
 public static class ParameterKey
 {
-    public static ParameterKey<T> Create<T>(string id, string display)
+    public static ParameterKey<T> CreateKey<T>(string id, string display)
     {
         return new ParameterKey<T>(id, display);
     }
 
-    /*public static EntityParameterKey<TEntity, TParam> Create<TEntity, TParam>(string id, string display)
-        where TEntity : class, IEntity
+    public static EntityParameterKey<TEntity, T> CreateKey<TEntity, T>(string id, string display)
+        where TEntity : IEntity
     {
-        return new EntityParameterKey<TEntity, TParam>(id, display);
-    }*/
+        return new EntityParameterKey<TEntity, T>(id, display);
+    }
 }
