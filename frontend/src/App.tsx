@@ -6,10 +6,9 @@ import { LoginPage } from './pages/Login/Login';
 function App() {
   return (
     <>
-      <div className="h-screen">
-      
-        <LoginPage/>
-      </div>
+      <Background>
+          <LoginPage/>
+      </Background>
     </>
   );
 }

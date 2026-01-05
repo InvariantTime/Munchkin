@@ -2,5 +2,4 @@
 
 public interface IGameScene
 {
-    void Reset();
 }

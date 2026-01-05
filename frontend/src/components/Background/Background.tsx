@@ -1,13 +1,18 @@
+import { ReactNode } from "react";
 import "./Background.css"
 
-
-export const Background = () =>
-{
-    return (
-        <div className="h-full">
-            <div className="dungeon-background"/>
-
-            <div className="character"/>
-        </div>
-    );
+interface Props {
+  children?: React.ReactNode
 }
+
+
+export const Background = ({children} : Props) => {
+  return (
+    <div className="background">
+      <div className="munchkin"/>
+        <div className="w-full z-10">
+          {children}
+        </div>
+    </div>
+  );
+};
