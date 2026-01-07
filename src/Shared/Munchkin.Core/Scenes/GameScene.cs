@@ -1,5 +1,5 @@
 ﻿namespace Munchkin.Core.Scenes;
 
-public interface IGameScene
+public abstract class GameScene
 {
 }
