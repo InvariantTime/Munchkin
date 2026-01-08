@@ -1,4 +1,5 @@
-﻿using Munchkin.Core.Cards;
+﻿using Munchkin.Core.Actions;
+using Munchkin.Core.Cards;
 
 namespace Munchkin.Core.Entities;
 
@@ -9,6 +10,8 @@ public class Player
     public List<Card> Hand { get; } = new();
 
     public List<Card> Equipment { get; } = new();
+
+    public List<GameAction> Actions { get; } = new();
 
     public int Level { get; private set; } = 1;
 

@@ -1,4 +1,5 @@
-﻿using Munchkin.Core.Cards;
+﻿using Munchkin.Core.Actions;
+using Munchkin.Core.Cards;
 using Munchkin.Core.Entities;
 using Munchkin.Core.Scenes;
 
@@ -11,6 +12,8 @@ public interface IGameRuleContext<T> where T : GameScene
     IReadOnlyCollection<Player> Players { get; }
 
     Player Current { get; }
+
+    GameAction? Action { get;  set; }
 
     Stack<Card> CardPool { get; }
 

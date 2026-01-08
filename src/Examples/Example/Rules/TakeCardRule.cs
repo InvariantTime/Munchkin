@@ -8,7 +8,7 @@ public class TakeCardRule : IGameRule
 {
     public bool CanExecute(IGameRuleContext context)
     {
-        return context.Scene is TakeCardScene;
+        return context.Scene is TakeCardScene && context.Action! == Actions.Common.TakeCard;
     }
 
     public void Execute(IGameRuleContext context)
@@ -18,12 +18,15 @@ public class TakeCardRule : IGameRule
         if (card.Type == CardTypes.Monster)
         {
             context.Scene = new FightScene(card.Power);
+            context.Current.Actions.Clear();
+            context.Current.Actions.Add(Actions.Fighting.Attack);
+            context.Current.Actions.Add(Actions.Fighting.Escape);
         }
         else
         {
-            context.Current.Equipment.Add(card);
-            ConsoleDrawer.Draw($"{context.Current.Name} takes card with power {card.Power}, new power: {context.Current.Power}", ConsoleColor.Yellow);
             context.NextPlayer();
+            context.Current.Actions.Clear();
+            context.Current.Actions.Add(Actions.Common.TakeCard);
         }
     }
 }

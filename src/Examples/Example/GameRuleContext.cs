@@ -1,4 +1,5 @@
-﻿using Munchkin.Core.Cards;
+﻿using Munchkin.Core.Actions;
+using Munchkin.Core.Cards;
 using Munchkin.Core.Entities;
 using Munchkin.Core.Rules;
 using Munchkin.Core.Scenes;
@@ -23,6 +24,8 @@ public class GameRuleContext : IGameRuleContext
     public Stack<Card> CardPool { get; }
 
     public bool IsRunning { get; set; } = true;
+
+    public GameAction? Action { get; set; }
 
     public GameRuleContext(IEnumerable<Player> players, IEnumerable<Card> pool, GameScene startScene)
     {

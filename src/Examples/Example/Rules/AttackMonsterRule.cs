@@ -3,11 +3,11 @@ using Munchkin.Core.Rules;
 
 namespace Example.Rules;
 
-public class StartFightRule : IGameRule
+public class AttackMonsterRule : IGameRule
 {
     public bool CanExecute(IGameRuleContext context)
     {
-        return context.Scene is FightScene;
+        return context.Scene is FightScene && context.Action! == Actions.Fighting.Attack;
     }
 
     public void Execute(IGameRuleContext context)
@@ -32,5 +32,7 @@ public class StartFightRule : IGameRule
 
         context.NextPlayer();
         context.Scene = new TakeCardScene();
+        context.Current.Actions.Clear();
+        context.Current.Actions.Add(Actions.Common.TakeCard);
     }
 }
