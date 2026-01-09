@@ -17,7 +17,7 @@ IGameRule[] rules = [
 
 Player[] players = [
 
-    new Player("Petya"){ Actions = { Actions.Common.TakeCard } },
+    new Player("Petya") { Actions = { Actions.Common.TakeCard } },
     new Player("Vasya"),
     new Player("Taras")
 ];
@@ -63,29 +63,24 @@ class Game
     {
         while (_context.IsRunning == true)
         {
-            var player = _context.Current;
+            var actions = _context.Players.Current.Actions;
 
             Thread.Sleep(2000);
             Console.Clear();
 
-            if (player.Actions.Count > 0)
+            GameAction? action = null;
+
+            if (actions.Count > 0)
             {
-                ConsoleDrawer.Draw($"Текущий игрок: {player.Name}", ConsoleColor.Yellow);
+                ConsoleDrawer.Draw($"Текущий игрок: {_context.Players.Current.Name}", ConsoleColor.Yellow);
 
-                for (int i = 0; i < player.Actions.Count; i++)
-                    ConsoleDrawer.Draw($"{i}: {player.Actions[i].DisplayName}");
+                for (int i = 0; i < actions.Count; i++)
+                    ConsoleDrawer.Draw($"{i}: {actions[i].DisplayName}", ConsoleColor.Yellow);
 
-                GameAction? action;
-
-                do
-                {
-                    action = HandleInput(player);
-                }
-                while (action is null);
-
-                _context.Action = action;
+                action = HandleInput(actions);
             }
 
+            _context.Action = action;
             var activeRules = _rules.Where(x => x.CanExecute(_context) == true);
 
             if (activeRules.Any() == false)
@@ -98,18 +93,22 @@ class Game
         ConsoleDrawer.Draw("Win!", ConsoleColor.Green);
     }
 
-    private GameAction? HandleInput(Player player)
+    private GameAction? HandleInput(IReadOnlyCollection<GameAction> actions)
     {
-        var str = Console.ReadLine();
-        bool result = int.TryParse(str, out int input);
-
-        if (result == false)
+        if (actions.Count == 0)
             return null;
 
-        if (input < 0 || input >= player.Actions.Count)
-            return null;
+        GameAction? result = null;
 
-        return player.Actions[input];
+        while (result == null)
+        {
+            string input = Console.ReadLine() ?? string.Empty;
+            bool hasValue = int.TryParse(input, out int index);
+
+            result = actions.ElementAtOrDefault(index);
+        }
+
+        return result;
     }
 }
 

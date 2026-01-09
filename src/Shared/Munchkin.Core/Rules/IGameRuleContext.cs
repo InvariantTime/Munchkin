@@ -9,17 +9,13 @@ public interface IGameRuleContext<T> where T : GameScene
 {
     T Scene { get; set; }
 
-    IReadOnlyCollection<Player> Players { get; }
-
-    Player Current { get; }
-
-    GameAction? Action { get;  set; }
+    IPlayersContext Players { get; }
 
     Stack<Card> CardPool { get; }
 
     bool IsRunning { get; set; }
 
-    void NextPlayer();
+    public GameAction? Action { get; set; }
 }
 
 public interface IGameRuleContext : IGameRuleContext<GameScene>

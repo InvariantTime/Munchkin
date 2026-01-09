@@ -15,7 +15,7 @@ public class AttackMonsterRule : IGameRule
         if (context.Scene is not FightScene fight)
             return;
 
-        var player = context.Current;
+        var player = context.Players.Current;
 
         ConsoleDrawer.Draw($"{player.Name} starts fight", ConsoleColor.Yellow);
 
@@ -30,9 +30,9 @@ public class AttackMonsterRule : IGameRule
             player.LevelUp();
         }
 
-        context.NextPlayer();
+        context.Players.NextPlayer();
         context.Scene = new TakeCardScene();
-        context.Current.Actions.Clear();
-        context.Current.Actions.Add(Actions.Common.TakeCard);
+        context.Players.Current.Actions.Clear();
+        context.Players.Current.Actions.Add(Actions.Common.TakeCard);
     }
 }

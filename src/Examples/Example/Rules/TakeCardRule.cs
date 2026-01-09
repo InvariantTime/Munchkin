@@ -18,15 +18,15 @@ public class TakeCardRule : IGameRule
         if (card.Type == CardTypes.Monster)
         {
             context.Scene = new FightScene(card.Power);
-            context.Current.Actions.Clear();
-            context.Current.Actions.Add(Actions.Fighting.Attack);
-            context.Current.Actions.Add(Actions.Fighting.Escape);
+            context.Players.Current.Actions.Clear();
+            context.Players.Current.Actions.Add(Actions.Fighting.Attack);
+            context.Players.Current.Actions.Add(Actions.Fighting.Escape);
         }
         else
         {
-            context.NextPlayer();
-            context.Current.Actions.Clear();
-            context.Current.Actions.Add(Actions.Common.TakeCard);
+            context.Players.NextPlayer();
+            context.Players.Current.Actions.Clear();
+            context.Players.Current.Actions.Add(Actions.Common.TakeCard);
         }
     }
 }

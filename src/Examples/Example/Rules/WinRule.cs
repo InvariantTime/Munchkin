@@ -6,12 +6,12 @@ public class WinRule : IGameRule
 {
     public bool CanExecute(IGameRuleContext context)
     {
-        return context.Players.Where(x => x.Level >= 10).Any() == true;
+        return context.Players.All.Where(x => x.Level >= 10).Any() == true;
     }
 
     public void Execute(IGameRuleContext context)
     {
-        var winner = context.Players.FirstOrDefault(x => x.Level >= 10);
+        var winner = context.Players.All.FirstOrDefault(x => x.Level >= 10);
         
         if (winner != null)
         {

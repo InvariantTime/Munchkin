@@ -1,4 +1,5 @@
-﻿using Munchkin.Core.Actions;
+﻿using Example.Players;
+using Munchkin.Core.Actions;
 using Munchkin.Core.Cards;
 using Munchkin.Core.Entities;
 using Munchkin.Core.Rules;
@@ -8,8 +9,6 @@ namespace Example;
 
 public class GameRuleContext : IGameRuleContext
 {
-    private int _index = 0;
-
     public GameScene Scene 
     {
         get => field ?? EmptyGameScene.Instance;
@@ -17,25 +16,18 @@ public class GameRuleContext : IGameRuleContext
         set => field = value;
     }
 
-    public IReadOnlyCollection<Player> Players { get; }
-
-    public Player Current => Players.ElementAt(_index);
-
     public Stack<Card> CardPool { get; }
 
     public bool IsRunning { get; set; } = true;
 
     public GameAction? Action { get; set; }
 
+    public IPlayersContext Players { get; }
+
     public GameRuleContext(IEnumerable<Player> players, IEnumerable<Card> pool, GameScene startScene)
     {
         Scene = startScene;
-        Players = players.ToArray();
         CardPool = new Stack<Card>(pool);
-    }
-
-    public void NextPlayer()
-    {
-        _index = _index + 1 < Players.Count ? _index + 1 : 0;
+        Players = new PlayersContext(players);
     }
 }
