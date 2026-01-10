@@ -11,7 +11,7 @@ public class GameRuleContext<T> : IGameRuleContext<T> where T : GameScene
 {
     private readonly GameState _state;
 
-    public T Scene { get; }
+    public ISceneAccessor<T> Scene { get; }
 
     public Stack<Card> CardPool => _state.Pool;
 
@@ -21,7 +21,7 @@ public class GameRuleContext<T> : IGameRuleContext<T> where T : GameScene
 
     public GameRuleContext(T scene, GameState state)
     {
-        Scene = scene;
+        Scene = new GameSceneAccessor<T>(scene, state);
         _state = state;
     }
 

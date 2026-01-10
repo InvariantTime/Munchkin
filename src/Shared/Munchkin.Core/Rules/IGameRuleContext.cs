@@ -6,15 +6,13 @@ namespace Munchkin.Core.Rules;
 
 public interface IGameRuleContext<out T> where T : GameScene
 {
-    T Scene { get; }
+    ISceneAccessor<T> Scene { get; }
 
     IPlayersContext Players { get; }
 
     Stack<Card> CardPool { get; }
 
     public GameAction? Action { get; set; }
-
-    void SetScene(GameScene scene);
 
     void FinishGame();
 }

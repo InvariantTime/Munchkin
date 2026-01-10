@@ -16,7 +16,7 @@ public class TakeCardRule : IGameRule, IForAction
 
         if (card.Type == CardTypes.Monster)
         {
-            context.SetScene(new FightScene(card.Power));
+            context.Scene.SetScene(new FightScene(card.Power));
             context.Players.Current.Actions.Clear();
             context.Players.Current.Actions.Add(Actions.Fighting.Attack);
             context.Players.Current.Actions.Add(Actions.Fighting.Escape);

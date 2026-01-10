@@ -31,7 +31,7 @@ public class EscapeMonsterRule : IGameRule, IForAction
         }
 
         context.Players.NextPlayer();
-        context.SetScene(new TakeCardScene());
+        context.Scene.SetScene(new TakeCardScene());
         context.Players.Current.Actions.Clear();
         context.Players.Current.Actions.Add(Actions.Common.TakeCard);
     }

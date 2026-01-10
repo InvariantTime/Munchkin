@@ -8,6 +8,7 @@ using Munchkin.Core.Rules;
 using Munchkin.Core.Scenes;
 
 
+
 Console.WriteLine(typeof(GameScene).IsAssignableFrom(typeof(TakeCardScene)));
 
 IGameRuleBase[] rules = [
