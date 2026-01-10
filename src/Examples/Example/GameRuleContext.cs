@@ -7,27 +7,31 @@ using Munchkin.Core.Scenes;
 
 namespace Example;
 
-public class GameRuleContext : IGameRuleContext
+public class GameRuleContext<T> : IGameRuleContext<T> where T : GameScene
 {
-    public GameScene Scene 
-    {
-        get => field ?? EmptyGameScene.Instance;
-        
-        set => field = value;
-    }
+    private readonly GameState _state;
 
-    public Stack<Card> CardPool { get; }
+    public T Scene { get; }
 
-    public bool IsRunning { get; set; } = true;
+    public Stack<Card> CardPool => _state.Pool;
 
     public GameAction? Action { get; set; }
 
-    public IPlayersContext Players { get; }
+    public IPlayersContext Players => _state.Players;
 
-    public GameRuleContext(IEnumerable<Player> players, IEnumerable<Card> pool, GameScene startScene)
+    public GameRuleContext(T scene, GameState state)
     {
-        Scene = startScene;
-        CardPool = new Stack<Card>(pool);
-        Players = new PlayersContext(players);
+        Scene = scene;
+        _state = state;
+    }
+
+    public void SetScene(GameScene scene)
+    {
+        _state.SetScene(scene);
+    }
+
+    public void FinishGame()
+    {
+        _state.Finish();
     }
 }

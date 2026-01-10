@@ -5,10 +5,14 @@ using Munchkin.Core.Actions;
 using Munchkin.Core.Cards;
 using Munchkin.Core.Entities;
 using Munchkin.Core.Rules;
-using System.Collections.Immutable;
+using Munchkin.Core.Scenes;
 
-IGameRule[] rules = [
-    
+
+Console.WriteLine(typeof(GameScene).IsAssignableFrom(typeof(TakeCardScene)));
+
+IGameRuleBase[] rules = [
+
+    new TakeCardInitialRule(),
     new TakeCardRule(),
     new EscapeMonsterRule(),
     new AttackMonsterRule(),
@@ -24,8 +28,14 @@ Player[] players = [
 
 var cards = GenerateCards(150);
 
-var game = new Game(rules, new GameRuleContext(players, cards, new TakeCardScene()));
-game.Run();
+var state = new GameState(players, new TakeCardScene(), cards);
+GameRuleLauncher launcher = new GameRuleLauncher(rules);
+
+launcher.Launch(state, GameEvent.SceneEvent(state.CurrentScene!));
+
+
+//var game = new Game(rules, new GameState(players, new TakeCardScene(), cards));
+//game.Run();
 
 IEnumerable<Card> GenerateCards(int count)
 {
@@ -46,24 +56,24 @@ IEnumerable<Card> GenerateCards(int count)
 
     return cards;
 }
-
+/*
 
 class Game
 {
     private readonly ImmutableArray<IGameRule> _rules;
-    private readonly IGameRuleContext _context;
+    private readonly GameState _state;
 
-    public Game(IEnumerable<IGameRule> rules, IGameRuleContext context)
+    public Game(IEnumerable<IGameRule> rules, GameState state)
     {
         _rules = rules.ToImmutableArray();
-        _context = context;
+        _state = state;
     }
 
     public void Run()
     {
-        while (_context.IsRunning == true)
+        while (_state.IsRunning == true)
         {
-            var actions = _context.Players.Current.Actions;
+            var actions = _state.Players.Current.Actions;
 
             Thread.Sleep(2000);
             Console.Clear();
@@ -72,7 +82,7 @@ class Game
 
             if (actions.Count > 0)
             {
-                ConsoleDrawer.Draw($"Текущий игрок: {_context.Players.Current.Name}", ConsoleColor.Yellow);
+                ConsoleDrawer.Draw($"Текущий игрок: {_state.Players.Current.Name}", ConsoleColor.Yellow);
 
                 for (int i = 0; i < actions.Count; i++)
                     ConsoleDrawer.Draw($"{i}: {actions[i].DisplayName}", ConsoleColor.Yellow);
@@ -80,14 +90,7 @@ class Game
                 action = HandleInput(actions);
             }
 
-            _context.Action = action;
-            var activeRules = _rules.Where(x => x.CanExecute(_context) == true);
-
-            if (activeRules.Any() == false)
-                return;
-
-            foreach (var rule in activeRules)
-                rule.Execute(_context);
+            
         }
 
         ConsoleDrawer.Draw("Win!", ConsoleColor.Green);
@@ -110,5 +113,4 @@ class Game
 
         return result;
     }
-}
-
+}*/
