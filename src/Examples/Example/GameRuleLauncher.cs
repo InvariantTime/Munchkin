@@ -10,30 +10,38 @@ namespace Example;
 public class GameRuleLauncher
 {
     private readonly ConcurrentDictionary<Type, Action<IGameRuleBase, GameState>> _ruleExecutors;
-    private readonly ImmutableArray<IGameRuleBase> _rules;
+    private readonly ImmutableArray<GameRuleDescription> _rules;
 
     public GameRuleLauncher(IEnumerable<IGameRuleBase> rules)
     {
-        _rules = rules.ToImmutableArray();
+        _rules = rules.Select(GameRuleDescription.Create).ToImmutableArray();
         _ruleExecutors = new ConcurrentDictionary<Type, Action<IGameRuleBase, GameState>>();
     }
 
-    public bool Launch(GameState state, GameEvent @event)
+    public void Launch(GameState state, GameEvent @event)
     {
-        var scene = state.CurrentScene;
+        if (@event.Type == EventTypes.SceneChanged)
+        {
+            if (@event.GameScene == null)
+                return;
 
-        if (scene == null)
-            return false;
+            var rules = _rules.Where(x => x.ForScene(@event.GameScene))
+                .Where(x => x.Conditions.Length == 1);
 
-        var rules = _rules.Where(x => CanExecute(x, scene.GetType()) == true);
+            foreach (var rule in rules)
+                TryCallRule(rule.Rule, state);
+        }
+        else if (@event.Type == EventTypes.Action)
+        {
+            if (@event.Action == null)
+                return;
 
-        if (rules.Any() == false)
-            return false;
+            var rules = _rules.Where(x => x.ForAction(@event.Action))
+                .Where(x => x.Conditions.Length == 1);
 
-        foreach (var rule in rules)
-            TryCallRule(rule, state);
-
-        return true;
+            foreach (var rule in rules)
+                TryCallRule(rule.Rule, state);
+        }
     }
 
     private void TryCallRule(IGameRuleBase rule, GameState state)
@@ -100,9 +108,6 @@ public class GameRuleLauncher
 
         var @new = Expression.New(ctor, sceneParameterConverted, gameStateParameter);
 
-        var canExecute = Expression.Call(ruleParameter, IGameRuleBase.CanExecuteMethod, 
-            Expression.Convert(@new, typeof(IGameRuleContext<GameScene>)));
-
         var checkRuleType = Expression.TypeIs(ruleParameter, typeof(IGameRule));
 
         var typedContext = typeof(IGameRuleContext<>).MakeGenericType(sceneType);
@@ -120,9 +125,7 @@ public class GameRuleLauncher
 
         var ruleIsSceneless = Expression.IfThenElse(checkRuleType, executeScenelessExpression, executeScenedExpression);
 
-        var body = Expression.IfThen(canExecute, ruleIsSceneless);
-
-        var lambda = Expression.Lambda<Action<IGameRuleBase, GameState>>(body, ruleParameter, gameStateParameter);
+        var lambda = Expression.Lambda<Action<IGameRuleBase, GameState>>(ruleIsSceneless, ruleParameter, gameStateParameter);
         return lambda.Compile();
     }
 }

@@ -1,16 +1,14 @@
 ﻿using Example.Scenes;
+using Munchkin.Core.Actions;
 using Munchkin.Core.Cards;
 using Munchkin.Core.Rules;
 using Munchkin.Core.Scenes;
 
 namespace Example.Rules;
 
-public class TakeCardRule : IGameRule
+public class TakeCardRule : IGameRule, IForAction
 {
-    public bool CanExecute(IGameRuleContext<GameScene> context)
-    {
-        return context.Scene is TakeCardScene && context.Action! == Actions.Common.TakeCard;
-    }
+    public GameAction TriggerAction => Actions.Common.TakeCard;
 
     public void Execute(IGameRuleContext<GameScene> context)
     {

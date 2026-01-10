@@ -1,15 +1,13 @@
 ﻿using Example.Scenes;
+using Munchkin.Core.Actions;
 using Munchkin.Core.Rules;
 using Munchkin.Core.Scenes;
 
 namespace Example.Rules;
 
-public class AttackMonsterRule : IGameRule
+public class AttackMonsterRule : IGameRule, IForAction
 {
-    public bool CanExecute(IGameRuleContext<GameScene> context)
-    {
-        return context.Scene is FightScene && context.Action! == Actions.Fighting.Attack;
-    }
+    public GameAction TriggerAction => Actions.Fighting.Attack;
 
     public void Execute(IGameRuleContext<GameScene> context)
     {

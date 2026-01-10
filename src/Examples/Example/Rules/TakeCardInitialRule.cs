@@ -6,10 +6,6 @@ namespace Example.Rules;
 
 public class TakeCardInitialRule : IGameRule<TakeCardScene>
 {
-    public bool CanExecute(IGameRuleContext<GameScene> context)
-    {
-        return true;
-    }
 
     public void Execute(IGameRuleContext<TakeCardScene> context)
     {
