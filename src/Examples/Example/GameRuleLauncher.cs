@@ -1,4 +1,5 @@
-﻿using Munchkin.Core.Rules;
+﻿using Munchkin.Core.Actions;
+using Munchkin.Core.Rules;
 using Munchkin.Core.Scenes;
 using System.Collections.Concurrent;
 using System.Collections.Immutable;
@@ -9,13 +10,13 @@ namespace Example;
 
 public class GameRuleLauncher
 {
-    private readonly ConcurrentDictionary<Type, Action<IGameRuleBase, GameState>> _ruleExecutors;
+    private readonly ConcurrentDictionary<Type, Action<IGameRuleBase, GameState, IGameActionAccessor>> _ruleExecutors;
     private readonly ImmutableArray<GameRuleDescription> _rules;
 
     public GameRuleLauncher(IEnumerable<IGameRuleBase> rules)
     {
         _rules = rules.Select(GameRuleDescription.Create).ToImmutableArray();
-        _ruleExecutors = new ConcurrentDictionary<Type, Action<IGameRuleBase, GameState>>();
+        _ruleExecutors = new ConcurrentDictionary<Type, Action<IGameRuleBase, GameState, IGameActionAccessor>>();
     }
 
     public void Launch(GameState state, GameEvent @event)
@@ -29,22 +30,25 @@ public class GameRuleLauncher
                 .Where(x => x.Conditions.Length == 1);
 
             foreach (var rule in rules)
-                TryCallRule(rule.Rule, state);
+                TryCallRule(rule.Rule, state, EmptyActionAccessor.Instance);
         }
         else if (@event.Type == EventTypes.Action)
         {
             if (@event.Action == null)
                 return;
 
+            if (@event.Executor == null)
+                return;
+
             var rules = _rules.Where(x => x.ForAction(@event.Action))
                 .Where(x => x.Conditions.Length == 1);
 
             foreach (var rule in rules)
-                TryCallRule(rule.Rule, state);
+                TryCallRule(rule.Rule, state, new ActionAccessor(@event.Action, @event.Executor));
         }
     }
 
-    private void TryCallRule(IGameRuleBase rule, GameState state)
+    private void TryCallRule(IGameRuleBase rule, GameState state, IGameActionAccessor action)
     {
         if (state.CurrentScene == null)
             return;
@@ -55,7 +59,7 @@ public class GameRuleLauncher
             return;
 
         var executor = _ruleExecutors.GetOrAdd(type, CreateExecutor);
-        executor.Invoke(rule, state);
+        executor.Invoke(rule, state, action);
     }
 
     private bool CanExecute(IGameRuleBase rule, Type sceneType)
@@ -93,10 +97,11 @@ public class GameRuleLauncher
         return generic;
     }
 
-    private Action<IGameRuleBase, GameState> CreateExecutor(Type sceneType)
+    private Action<IGameRuleBase, GameState, IGameActionAccessor> CreateExecutor(Type sceneType)
     {
         var ruleParameter = Expression.Parameter(typeof(IGameRuleBase));
         var gameStateParameter = Expression.Parameter(typeof(GameState));
+        var actionParameter = Expression.Parameter(typeof(IGameActionAccessor));
 
         var ctor = typeof(GameRuleContext<>)
             .MakeGenericType(sceneType)
@@ -106,7 +111,7 @@ public class GameRuleLauncher
         var sceneParameter = Expression.Property(gameStateParameter, GameState.SceneProperty);
         var sceneParameterConverted = Expression.Convert(sceneParameter, sceneType);
 
-        var @new = Expression.New(ctor, sceneParameterConverted, gameStateParameter);
+        var @new = Expression.New(ctor, sceneParameterConverted, Expression.Convert(actionParameter, typeof(IGameActionAccessor)), gameStateParameter);
 
         var checkRuleType = Expression.TypeIs(ruleParameter, typeof(IGameRule));
 
@@ -125,7 +130,7 @@ public class GameRuleLauncher
 
         var ruleIsSceneless = Expression.IfThenElse(checkRuleType, executeScenelessExpression, executeScenedExpression);
 
-        var lambda = Expression.Lambda<Action<IGameRuleBase, GameState>>(ruleIsSceneless, ruleParameter, gameStateParameter);
+        var lambda = Expression.Lambda<Action<IGameRuleBase, GameState, IGameActionAccessor>>(ruleIsSceneless, ruleParameter, gameStateParameter, actionParameter);
         return lambda.Compile();
     }
 }

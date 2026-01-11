@@ -1,13 +1,10 @@
 ﻿using Example;
 using Example.Rules;
 using Example.Scenes;
-using Munchkin.Core.Actions;
 using Munchkin.Core.Cards;
 using Munchkin.Core.Entities;
 using Munchkin.Core.Rules;
 using Munchkin.Core.Scenes;
-
-
 
 Console.WriteLine(typeof(GameScene).IsAssignableFrom(typeof(TakeCardScene)));
 
@@ -32,7 +29,4 @@ var cards = Enumerable.Empty<Card>();
 var state = new GameState(players, new TakeCardScene(), cards);
 GameRuleLauncher launcher = new GameRuleLauncher(rules);
 
-launcher.Launch(state, GameEvent.ActionEvent(Actions.Common.TakeCard));
-
-//var game = new Game(rules, new GameState(players, new TakeCardScene(), cards));
-//game.Run();
+launcher.Launch(state, GameEvent.ActionEvent(Actions.Common.TakeCard, state.Players.Current));

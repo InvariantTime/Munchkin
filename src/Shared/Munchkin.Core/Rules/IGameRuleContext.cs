@@ -12,7 +12,7 @@ public interface IGameRuleContext<out T> where T : GameScene
 
     Stack<Card> CardPool { get; }
 
-    public GameAction? Action { get; set; }
+    public IGameActionAccessor Action { get; }
 
     void FinishGame();
 }

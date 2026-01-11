@@ -15,13 +15,14 @@ public class GameRuleContext<T> : IGameRuleContext<T> where T : GameScene
 
     public Stack<Card> CardPool => _state.Pool;
 
-    public GameAction? Action { get; set; }
+    public IGameActionAccessor Action { get; }
 
     public IPlayersContext Players => _state.Players;
 
-    public GameRuleContext(T scene, GameState state)
+    public GameRuleContext(T scene, IGameActionAccessor action, GameState state)
     {
         Scene = new GameSceneAccessor<T>(scene, state);
+        Action = action;
         _state = state;
     }
 

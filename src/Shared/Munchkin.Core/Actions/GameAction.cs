@@ -2,6 +2,8 @@
 
 public class GameAction : IEquatable<GameAction>
 {
+    public static readonly GameAction EmptyAction = new("_empty_action_", "None");
+
     public string Id { get; }
 
     public string DisplayName { get; }
