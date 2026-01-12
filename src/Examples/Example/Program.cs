@@ -1,32 +1,37 @@
-﻿using Example;
-using Example.Rules;
-using Example.Scenes;
-using Munchkin.Core.Cards;
-using Munchkin.Core.Entities;
-using Munchkin.Core.Rules;
-using Munchkin.Core.Scenes;
+﻿
 
-Console.WriteLine(typeof(GameScene).IsAssignableFrom(typeof(TakeCardScene)));
 
-IGameRuleBase[] rules = [
+CancellationTokenSource cts = new();
 
-    new TakeCardInitialRule(),
-    new TakeCardRule(),
-    new EscapeMonsterRule(),
-    new AttackMonsterRule(),
-    new WinRule()
-];
 
-Player[] players = [
+var eventDispatcher = new EventDispatcher();
 
-    new Player("Petya"),
-    new Player("Vasya"),
-    new Player("Taras")
-];
+while (cts.IsCancellationRequested == false)
+{
+    var events = eventDispatcher.GetEvents();
+}
 
-var cards = Enumerable.Empty<Card>();
 
-var state = new GameState(players, new TakeCardScene(), cards);
-GameRuleLauncher launcher = new GameRuleLauncher(rules);
+interface IEvent
+{
+    string Name { get; }
+}
 
-launcher.Launch(state, GameEvent.ActionEvent(Actions.Common.TakeCard, state.Players.Current));
+class EventDispatcher
+{
+    private readonly Queue<IEvent> _events = new();
+
+
+    public void AddEvent(IEvent @event)
+    {
+        _events.Enqueue(@event);
+    }
+
+    public IEnumerable<IEvent> GetEvents()
+    {
+        var events = _events.ToArray();
+        _events.Clear();
+
+        return events;
+    }
+}
