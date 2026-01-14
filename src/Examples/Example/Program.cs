@@ -1,16 +1,66 @@
 ﻿using System.Threading.Channels;
 
-var source = new PeriodicEventSource(1);
+var sources = new IEventSource[]
+{
+    new PeriodicEventSource("1 second", TimeSpan.FromSeconds(1)),
+    new PeriodicEventSource("5 seconds", TimeSpan.FromSeconds(5)),
+    new PeriodicEventSource("10 seconds", TimeSpan.FromSeconds(10)),
+    new ClickEventSource()
+};
 
+var dispatcher = new EventDispatcher(sources);
 var cts = new CancellationTokenSource();
-EventDispatcher dispatcher = new EventDispatcher(source);
 
 while (cts.IsCancellationRequested == false)
 {
     var @event = await dispatcher.WaitForEventAsync(cts.Token);
-    Console.WriteLine($"Handled event {@event} at {@event.Time}");
+    await Console.Out.WriteLineAsync($"Event {@event} at {@event.Time}");
 }
 
+await dispatcher.StopAsync(CancellationToken.None);
+
+
+class EventDispatcher
+{
+    private readonly CancellationTokenSource _cancellation;
+    private readonly Task _executionTask;
+    private readonly Channel<IEvent> _queue;
+
+    public EventDispatcher(IEnumerable<IEventSource> sources)
+    {
+        _cancellation = new CancellationTokenSource();
+        _queue = Channel.CreateUnbounded<IEvent>();
+
+        var tasks = sources.Select(x => x.StartListeningAsync(_queue, _cancellation.Token));
+        _executionTask = Task.WhenAll(tasks);
+    }
+
+    public async Task<IEvent> WaitForEventAsync(CancellationToken cancellation)
+    {
+        return await _queue.Reader.ReadAsync(cancellation);
+    }
+
+    public async Task StopAsync(CancellationToken cancellation)
+    {
+
+        try
+        {
+            await _cancellation.CancelAsync();
+        }
+        finally
+        {
+            await _executionTask.WaitAsync(cancellation)
+                .ConfigureAwait(ConfigureAwaitOptions.SuppressThrowing);
+
+            _cancellation.Dispose();
+        }
+    }
+}
+
+interface IEventSource
+{
+    Task StartListeningAsync(Channel<IEvent> queue, CancellationToken cancellation);
+}
 
 interface IEvent
 {
@@ -21,57 +71,49 @@ class SimpleEvent : IEvent
 {
     public DateTime Time { get; }
 
-    public SimpleEvent()
+    public string Message { get; }
+
+    public SimpleEvent(string message)
     {
         Time = DateTime.Now;
+        Message = message;
     }
-}
 
-class EventDispatcher
-{
-    private readonly Channel<IEvent> _eventBuffer;
-    private readonly IEventSource _source;
-
-    public EventDispatcher(IEventSource source)
+    public override string ToString()
     {
-        _source = source;
-        _eventBuffer = Channel.CreateUnbounded<IEvent>();
+        return Message;
     }
-
-    public async Task<IEvent> WaitForEventAsync(CancellationToken cancellation)
-    {
-        var @event = await _source.GetEventAsync(cancellation);
-        return @event;
-    }
-}
-
-interface IEventSource
-{
-    ValueTask<IEvent> GetEventAsync(CancellationToken cancellation);
 }
 
 class PeriodicEventSource : IEventSource
 {
-    private readonly Channel<IEvent> _channel;
+    private readonly string _message;
     private readonly PeriodicTimer _timer;
 
-    public PeriodicEventSource(int seconds)
+    public PeriodicEventSource(string message, TimeSpan time)
     {
-        _timer = new PeriodicTimer(TimeSpan.FromSeconds(seconds));
-        _channel = Channel.CreateUnbounded<IEvent>();
-
-        Task.Run(async () =>
-        {
-            while (true)//TODO: cancellation
-            {
-                await _timer.WaitForNextTickAsync();
-                await _channel.Writer.WriteAsync(new SimpleEvent());
-            }
-        });
+        _message = message;
+        _timer = new PeriodicTimer(time);
     }
 
-    public ValueTask<IEvent> GetEventAsync(CancellationToken cancellation)
+    public async Task StartListeningAsync(Channel<IEvent> queue, CancellationToken cancellation)
     {
-        return _channel.Reader.ReadAsync(cancellation);
+        while (await _timer.WaitForNextTickAsync(cancellation) == true)
+            await queue.Writer.WriteAsync(new SimpleEvent(_message), cancellation);
+    }
+}
+
+class ClickEventSource : IEventSource
+{
+    public Task StartListeningAsync(Channel<IEvent> queue, CancellationToken cancellation)
+    {
+        return Task.Run(async () =>
+        {
+            while (cancellation.IsCancellationRequested == false)
+            {
+                var key = Console.ReadKey(true).KeyChar;
+                await queue.Writer.WriteAsync(new SimpleEvent($"On click {key}"), cancellation);
+            }
+        });
     }
 }
