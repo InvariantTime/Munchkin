@@ -5,7 +5,14 @@ public class GameApplication
     private CancellationTokenSource? _cts;
     private Task? _executionTask;
 
+    private readonly EventDispatcher _eventDispatcher;
+
     public bool IsRunning => _executionTask != null && _executionTask.Status == TaskStatus.Running;
+
+    public GameApplication(EventDispatcher dispatcher)
+    {
+        _eventDispatcher = dispatcher;
+    }
 
     public Task RunAsync(CancellationToken cancellation = default)
     {
@@ -41,7 +48,9 @@ public class GameApplication
     {
         while (cancellation.IsCancellationRequested == false)
         {
-             
+            var @event = await _eventDispatcher.WaitForEventAsync(cancellation);
+
+
         }
     }
 }
