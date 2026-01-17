@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.0 Chrome/140.0.7339.249 Electron/38.7.2 Safari/537.36" version="29.3.0">
   <diagram id="d379LjkRafQSSlMhHbvL" name="GameLoop">
-    <mxGraphModel dx="891" dy="527" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1097" dy="648" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -89,6 +89,21 @@
         </mxCell>
         <mxCell id="6zQNwbvcXM8RJfdn8pKF-31" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="O&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;ther Event Source&amp;nbsp;&lt;/span&gt;" vertex="1">
           <mxGeometry height="25" width="120" x="600" y="585" as="geometry" />
+        </mxCell>
+        <mxCell id="tQI7W-1C0Vi9kiqo9Xsn-2" parent="1" style="swimlane;whiteSpace=wrap;html=1;" value="State" vertex="1">
+          <mxGeometry height="280" width="320" x="160" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="tQI7W-1C0Vi9kiqo9Xsn-3" parent="1" style="swimlane;whiteSpace=wrap;html=1;" value="Parameter" vertex="1">
+          <mxGeometry height="280" width="360" x="520" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="tQI7W-1C0Vi9kiqo9Xsn-4" parent="tQI7W-1C0Vi9kiqo9Xsn-3" style="rounded=0;whiteSpace=wrap;html=1;" value="Parameter 1" vertex="1">
+          <mxGeometry height="40" width="120" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="tQI7W-1C0Vi9kiqo9Xsn-6" edge="1" parent="tQI7W-1C0Vi9kiqo9Xsn-3" source="tQI7W-1C0Vi9kiqo9Xsn-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="tQI7W-1C0Vi9kiqo9Xsn-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tQI7W-1C0Vi9kiqo9Xsn-5" parent="tQI7W-1C0Vi9kiqo9Xsn-3" style="rounded=0;whiteSpace=wrap;html=1;" value="Key 1" vertex="1">
+          <mxGeometry height="40" width="120" x="200" y="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

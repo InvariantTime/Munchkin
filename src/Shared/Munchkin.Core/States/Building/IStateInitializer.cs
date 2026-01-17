@@ -3,4 +3,6 @@
 public interface IStateInitializer
 {
     IStateBuilder RegisterState(IStateKey key);
+
+    IStateInitializer RegisterContainer(IStateContainer container);
 }
