@@ -7,11 +7,15 @@ public abstract class GameScene : IStatable
 {
     private readonly IStateContainer _states;
 
+    protected GameScene()
+    {
+        _states = new StateContainer();
+    }
+
     public void OnInitialize(IStateInitializer initializer)
     {
-        //TODO: base initializing
-        var containerInitializer = initializer.RegisterContainer(_states);
-        RegisterStates(containerInitializer);
+        RegisterStates(initializer);
+        initializer.InitializeContainer(_states);
     }
 
     public IState? GetState(IStateKey key)

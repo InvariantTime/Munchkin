@@ -4,5 +4,5 @@ public interface IStateInitializer
 {
     IStateBuilder RegisterState(IStateKey key);
 
-    IStateInitializer RegisterContainer(IStateContainer container);
+    void InitializeContainer(IStateContainer container);
 }
