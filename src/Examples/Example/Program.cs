@@ -8,6 +8,7 @@ MyScene scene = new MyScene();
 
 var state = scene.GetState(MyScene.MyParameterKey);
 
+Console.WriteLine();
 
 class MyScene : GameScene
 {
