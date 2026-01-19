@@ -1,17 +1,14 @@
-﻿namespace Munchkin.Core.States.Building;
+﻿using System.Collections.Frozen;
+
+namespace Munchkin.Core.States.Building;
 
 public class StateContainer : IStateContainer
 {
-    private readonly Dictionary<IStateKey, IState> _states;
+    private readonly FrozenDictionary<IStateKey, IState> _states;
 
-    public StateContainer()
+    public StateContainer(IEnumerable<IState> states)
     {
-        _states = new Dictionary<IStateKey, IState>();
-    }
-
-    public void AddState(IState state)
-    {
-        _states.Add(state.Key, state);
+        _states = states.ToFrozenDictionary(x => x.Key);
     }
 
     public IState? GetState(IStateKey key)

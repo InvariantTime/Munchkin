@@ -1,6 +1,6 @@
 ﻿namespace Munchkin.Core.States.Building;
 
-public interface IStateContainer : IReadOnlyStateContainer
+public interface IStateContainer
 {
-    void AddState(IState state);
+    IState? GetState(IStateKey key);
 }
