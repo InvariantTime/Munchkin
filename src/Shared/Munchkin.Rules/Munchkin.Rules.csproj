@@ -7,13 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Munchkin.App.Core\Munchkin.App.Core.csproj" />
-    <ProjectReference Include="..\Munchkin.Cards\Munchkin.Cards.csproj" />
     <ProjectReference Include="..\Munchkin.Entities\Munchkin.Entities.csproj" />
-    <ProjectReference Include="..\Munchkin.Rules\Munchkin.Rules.csproj" />
     <ProjectReference Include="..\Munchkin.Scenes\Munchkin.Scenes.csproj" />
-    <ProjectReference Include="..\Munchkin.States\Munchkin.States.csproj" />
-    <ProjectReference Include="..\Munchkin.Utils\Munchkin.Utils.csproj" />
   </ItemGroup>
 
 </Project>

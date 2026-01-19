@@ -1,4 +1,4 @@
-﻿using Munchkin.Core.Events;
+﻿using Munchkin.App.Core.Events;
 
 namespace Munchkin.App;
 

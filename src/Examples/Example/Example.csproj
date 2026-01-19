@@ -8,8 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\Munchkin.App\Munchkin.App.csproj" />
-    <ProjectReference Include="..\..\Shared\Munchkin.Core\Munchkin.Core.csproj" />
+    <ProjectReference Include="..\..\Shared\Munchkin.Cards\Munchkin.Cards.csproj" />
+    <ProjectReference Include="..\..\Shared\Munchkin.Entities\Munchkin.Entities.csproj" />
+    <ProjectReference Include="..\..\Shared\Munchkin.Rules\Munchkin.Rules.csproj" />
+    <ProjectReference Include="..\..\Shared\Munchkin.Scenes\Munchkin.Scenes.csproj" />
+    <ProjectReference Include="..\..\Shared\Munchkin.States\Munchkin.States.csproj" />
+    <ProjectReference Include="..\..\Shared\Munchkin.Utils\Munchkin.Utils.csproj" />
   </ItemGroup>
 
 </Project>
