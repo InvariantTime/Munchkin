@@ -2,4 +2,7 @@
 
 public interface IStateBuilder
 {
+    IStateKey Key { get; }
+
+    IState Build();
 }

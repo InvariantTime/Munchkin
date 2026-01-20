@@ -3,53 +3,25 @@ using Munchkin.States;
 using Munchkin.States.Building;
 using Munchkin.States.Containers;
 
-var initializer = new StateInitializer();
+/*
 
-var scene = new MyScene();
-scene.OnInitialize(initializer);
-
-var parameter = scene.MyParameter;
-Console.WriteLine(parameter.GetValue());
-
-class MyScene : GameScene
+void Rule()
 {
-    public static readonly IGenericStateKey<int> MyParameterKey = StateKey.Create<int>("my_param", "My parameter", 100);
+    
 
-    public IState MyParameter => States.GetState(MyParameterKey)!;
+}
+
+*/
+
+
+class FightScene : GameScene
+{
+    public static readonly IGenericStateKey<bool> CanFightKey = StateKey.Create<bool>("_can_fight_state_", "Can fight", false);
+
+    public IGenericState<bool> CanFight => States.GetRequiredState(CanFightKey);
 
     protected override void InitializeStates(IStateInitializer initializer)
     {
-        initializer.RegisterState(MyParameterKey);
-    }
-}
-
-class StateInitializer : IStateInitializer
-{
-    private readonly List<IState> _states = new();
-
-    public IStateContainer BuildContainer()
-    {
-        return new StateContainer(_states);
-    }
-
-    public IStateBuilder RegisterState(IStateKey key)
-    {
-        _states.Add(new SimpleState(key));
-        return null!;
-    }
-}
-
-class SimpleState : IState
-{
-    public IStateKey Key { get; }
-
-    public SimpleState(IStateKey key)
-    {
-        Key = key;
-    }
-
-    public object GetValue()
-    {
-        return Key.DefaultValue ?? new object();
+        initializer.RegisterState(CanFightKey);
     }
 }
