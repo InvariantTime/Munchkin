@@ -1,5 +1,5 @@
 ﻿
-namespace Munchkin.Utils.Observable;
+namespace Munchkin.Notification;
 
 public class ReadOnlyNotifier<T> : INotifier<T>
 {

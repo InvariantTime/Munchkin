@@ -1,5 +1,5 @@
 ﻿
-namespace Munchkin.Utils.Observable;
+namespace Munchkin.Notification;
 
 public class SourceNotifySubject<TSource, TValue> : ISourceNotifier<TSource, TValue>, INotifyListener<TValue>
 {

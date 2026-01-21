@@ -34,6 +34,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{BD5333D0-663
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{331F75BB-6DBE-4E7B-A3F0-C650FE1691C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Munchkin.Notification", "Munchkin.Notification\Munchkin.Notification.csproj", "{3E84F6ED-2A58-4617-8F44-A85B42368DB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +78,10 @@ Global
 		{5005F476-D206-4C5F-AE50-925FF8EA6858}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5005F476-D206-4C5F-AE50-925FF8EA6858}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5005F476-D206-4C5F-AE50-925FF8EA6858}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E84F6ED-2A58-4617-8F44-A85B42368DB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E84F6ED-2A58-4617-8F44-A85B42368DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E84F6ED-2A58-4617-8F44-A85B42368DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E84F6ED-2A58-4617-8F44-A85B42368DB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +98,7 @@ Global
 		{5005F476-D206-4C5F-AE50-925FF8EA6858} = {BD5333D0-6637-414E-8AB8-A4BC52A33010}
 		{BD5333D0-6637-414E-8AB8-A4BC52A33010} = {B4AC17F5-7D23-4362-B39E-7321018362D1}
 		{331F75BB-6DBE-4E7B-A3F0-C650FE1691C0} = {B4AC17F5-7D23-4362-B39E-7321018362D1}
+		{3E84F6ED-2A58-4617-8F44-A85B42368DB2} = {331F75BB-6DBE-4E7B-A3F0-C650FE1691C0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B29B14D-5793-4FFE-A488-7CB40348764F}

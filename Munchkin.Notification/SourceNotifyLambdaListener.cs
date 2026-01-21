@@ -1,4 +1,4 @@
-﻿namespace Munchkin.Utils.Observable;
+﻿namespace Munchkin.Notification;
 
 public class SourceNotifyLambdaListener<TSource, TValue> : ISourceNotifyListener<TSource, TValue>
 {

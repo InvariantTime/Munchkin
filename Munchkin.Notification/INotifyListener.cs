@@ -1,4 +1,4 @@
-﻿namespace Munchkin.Utils.Observable;
+﻿namespace Munchkin.Notification;
 
 public interface INotifyListener<in T>
 {
