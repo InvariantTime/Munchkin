@@ -1,17 +1,26 @@
-﻿namespace Munchkin.Notification;
+﻿using Munchkin.Utils;
+
+namespace Munchkin.Notification;
 
 public class NotifySubject<T> : INotifier<T>, INotifyListener<T>
 {
+    private bool _isDisposed = false;
     private Node? _root;
 
     public IDisposable Subscribe(INotifyListener<T> listener)
     {
+        if (_isDisposed == true)
+            return Disposable.Empty;
+
         var node = new Node(listener, this);
         return node;
     }
 
     public void OnNotify(T value)
     {
+        if (_isDisposed == true)
+            return;
+
         var current = _root;
 
         while (current != null)
@@ -19,6 +28,12 @@ public class NotifySubject<T> : INotifier<T>, INotifyListener<T>
             current.Listener.OnNotify(value);
             current = current.Next;
         }
+    }
+
+    public void Dispose()
+    {
+        _isDisposed = true;
+        _root = null;
     }
 
     private class Node : IDisposable

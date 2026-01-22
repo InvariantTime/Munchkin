@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\src\Shared\Munchkin.Utils\Munchkin.Utils.csproj" />
+  </ItemGroup>
+
 </Project>

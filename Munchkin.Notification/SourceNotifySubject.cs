@@ -1,19 +1,26 @@
 ﻿
+using Munchkin.Utils;
+
 namespace Munchkin.Notification;
 
 public class SourceNotifySubject<TSource, TValue> : ISourceNotifier<TSource, TValue>, INotifyListener<TValue>
 {
     private readonly TSource _source;
 
+    private bool _isDisposed;
     private Node? _root;
 
     public SourceNotifySubject(TSource source)
     {
         _source = source;
+        _isDisposed = false;
     }
 
     public void OnNotify(TValue value)
     {
+        if (_isDisposed == false)
+            return;
+
         var current = _root;
 
         while (current != null)
@@ -24,8 +31,17 @@ public class SourceNotifySubject<TSource, TValue> : ISourceNotifier<TSource, TVa
 
     public IDisposable Subscribe(ISourceNotifyListener<TSource, TValue> listener)
     {
+        if (_isDisposed == false)
+            return Disposable.Empty;
+
         var node = new Node(listener, this);
         return node;
+    }
+
+    public void Dispose()
+    {
+        _isDisposed = true;
+        _root = null;
     }
 
     private class Node : IDisposable

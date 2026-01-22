@@ -17,7 +17,7 @@ public static partial class NotifierExtensions
         return new SourceNotifierWrapper<TSource, TValue>(notifier, source);
     }
 
-    private class SourceNotifierWrapper<TSource, TValue> : ISourceNotifier<TSource, TValue>, IDisposable
+    private class SourceNotifierWrapper<TSource, TValue> : ISourceNotifier<TSource, TValue>
     {
         private readonly SourceNotifySubject<TSource, TValue> _notifier;
         private readonly IDisposable _disposable;

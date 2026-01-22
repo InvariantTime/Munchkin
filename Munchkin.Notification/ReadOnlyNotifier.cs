@@ -14,4 +14,8 @@ public class ReadOnlyNotifier<T> : INotifier<T>
     {
         return _notifier.Subscribe(listener);
     }
+
+    public void Dispose()
+    {
+    }
 }
