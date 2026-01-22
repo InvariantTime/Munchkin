@@ -1,6 +1,6 @@
 ﻿namespace Munchkin.Notification;
 
-public static class SourceNotifierExtensions
+public static partial class SourceNotifierExtensions
 {
     public static IDisposable Subscribe<TSource, TValue>(this ISourceNotifier<TSource, TValue> notifier, INotifyListener<TValue> listener)
     {
@@ -25,5 +25,21 @@ public static class SourceNotifierExtensions
         {
             _listener.OnNotify(value);
         }
+    }
+}
+
+internal class SourceNotifyLambdaListener<TSource, TValue> : ISourceNotifyListener<TSource, TValue>
+{
+    private readonly Action<TSource, TValue> _lambda;
+
+    public SourceNotifyLambdaListener(Action<TSource, TValue> lambda)
+    {
+        ArgumentNullException.ThrowIfNull(lambda);
+        _lambda = lambda;
+    }
+
+    public void OnNotify(TSource source, TValue value)
+    {
+        _lambda.Invoke(source, value);
     }
 }

@@ -3,35 +3,33 @@ using Munchkin.Utils;
 
 namespace Munchkin.Notification;
 
-public class SourceNotifySubject<TSource, TValue> : ISourceNotifier<TSource, TValue>, INotifyListener<TValue>
+public class SourceNotifySubject<TSource, TValue> : ISourceNotifier<TSource, TValue>, ISourceNotifyListener<TSource, TValue>
 {
-    private readonly TSource _source;
-
     private bool _isDisposed;
     private Node? _root;
 
-    public SourceNotifySubject(TSource source)
+    public SourceNotifySubject()
     {
-        _source = source;
         _isDisposed = false;
     }
 
-    public void OnNotify(TValue value)
+    public void OnNotify(TSource source, TValue value)
     {
-        if (_isDisposed == false)
+        if (_isDisposed == true)
             return;
 
         var current = _root;
 
         while (current != null)
         {
-            current.Listener.OnNotify(_source, value);
+            current.Listener.OnNotify(source, value);
+            current = current.Next;
         }
     }
 
     public IDisposable Subscribe(ISourceNotifyListener<TSource, TValue> listener)
     {
-        if (_isDisposed == false)
+        if (_isDisposed == true)
             return Disposable.Empty;
 
         var node = new Node(listener, this);

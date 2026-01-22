@@ -1,6 +1,14 @@
 ﻿namespace Munchkin.Notification;
 
-public class NotifyLambdaListener<T> : INotifyListener<T>
+public static partial class NotifierExtensions
+{
+    public static IDisposable Subscribe<T>(this INotifier<T> notifier, Action<T> listener)
+    {
+        return notifier.Subscribe(new NotifyLambdaListener<T>(listener));
+    }
+}
+
+internal class NotifyLambdaListener<T> : INotifyListener<T>
 {
     private readonly Action<T> _lambda;
 
