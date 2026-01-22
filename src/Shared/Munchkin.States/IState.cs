@@ -1,8 +1,10 @@
-﻿namespace Munchkin.States;
+﻿using Munchkin.States.Values;
+
+namespace Munchkin.States;
 
 public interface IState
 {
     IStateKey Key { get; }
 
-    object GetValue();
+    IStateValue<object> Value { get; }
 }

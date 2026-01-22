@@ -1,8 +1,10 @@
-﻿namespace Munchkin.States;
+﻿using Munchkin.States.Values;
 
-public interface IGenericState<T> : IState where T : notnull
+namespace Munchkin.States;
+
+public interface IGenericState<T> : IState
 {
     new IGenericStateKey<T> Key { get; }
 
-    new T GetValue();
+    new IStateValue<T> Value { get; }
 }

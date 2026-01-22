@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Munchkin.Notification\Munchkin.Notification.csproj" />
     <ProjectReference Include="..\..\Shared\Munchkin.Cards\Munchkin.Cards.csproj" />
     <ProjectReference Include="..\..\Shared\Munchkin.Entities\Munchkin.Entities.csproj" />
     <ProjectReference Include="..\..\Shared\Munchkin.Rules\Munchkin.Rules.csproj" />
