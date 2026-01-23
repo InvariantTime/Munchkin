@@ -5,26 +5,26 @@ namespace Munchkin.States.Values;
 
 public class CommonStateValue<T> : IStateValue<T>
 {
+    private readonly NotifySubject<T> _notifier;
     private readonly ImmutableArray<StateValueCondition<T>> _conditions;
 
-    private T _value;
-
-    public T Value => _value;
+    public T Value { get; private set; }
 
     public CommonStateValue(IEnumerable<StateValueCondition<T>> conditions, T value)
     {
         _conditions = conditions.ToImmutableArray();
-        _value = value;
+        _notifier = new NotifySubject<T>();
+        Value = value;
     }
 
     public IDisposable Subscribe(INotifyListener<T> listener)
     {
-        throw new NotImplementedException();
+        return _notifier.Subscribe(listener);
     }
 
     public void Dispose()
     {
-        throw new NotImplementedException();
+        _notifier.Dispose();
     }
 
     private void SetValue(T value)
@@ -35,6 +35,6 @@ public class CommonStateValue<T> : IStateValue<T>
                 return;
         }
 
-        _value = value;
+        Value = value;
     }
 }

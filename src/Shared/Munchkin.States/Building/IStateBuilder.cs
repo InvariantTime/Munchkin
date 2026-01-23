@@ -1,4 +1,6 @@
-﻿namespace Munchkin.States.Building;
+﻿using Munchkin.States.Containers;
+
+namespace Munchkin.States.Building;
 
 public interface IStateBuilder
 {

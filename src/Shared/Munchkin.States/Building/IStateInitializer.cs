@@ -4,9 +4,7 @@ namespace Munchkin.States.Building;
 
 public interface IStateInitializer
 {
-    IStateBuilder RegisterState(IStateKey key);
-
-    IStateBuilder<T> RegisterState<T>(IGenericStateKey<T> key);
+    T Register<T>(IStateKey key) where T : IStateBuilder;
 
     IStateContainer BuildContainer();
 }
