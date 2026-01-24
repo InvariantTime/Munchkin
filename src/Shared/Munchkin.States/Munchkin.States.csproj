@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Munchkin.Notification\Munchkin.Notification.csproj" />
+  </ItemGroup>
+
 </Project>

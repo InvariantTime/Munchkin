@@ -1,10 +1,12 @@
-﻿using Munchkin.States.Values;
+﻿using Munchkin.Notification;
 
 namespace Munchkin.States;
 
-public interface IState
+public interface IState : ISourceNotifier<IState, object>
 {
     IStateKey Key { get; }
 
-    IStateValue<object> Value { get; }
+    object Value { get; }
+
+    bool TrySetValue(object value);
 }
