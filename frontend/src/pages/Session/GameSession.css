@@ -1,0 +1,25 @@
+.container {
+    display: grid;
+    height: 100%;
+    grid-template-areas: 
+    "A A A"
+    "A A A"
+    "B B B"
+    "B B B"
+    "C C C";
+}
+
+.scene {
+    grid-area: A;
+    background-color: green;
+}
+
+.table {
+    grid-area: B;
+    background-color: red;
+}
+
+.handArea {
+    grid-area: C;
+    background-color: blue;
+}
