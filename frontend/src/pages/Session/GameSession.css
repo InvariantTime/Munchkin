@@ -1,25 +1,27 @@
 .container {
     display: grid;
     height: 100%;
+    width: 100%;
     grid-template-areas: 
     "A A A"
-    "A A A"
+    "B B B"
     "B B B"
     "B B B"
     "C C C";
 }
 
-.scene {
+.playerList {
     grid-area: A;
-    background-color: green;
 }
 
-.table {
+.scene {
     grid-area: B;
-    background-color: red;
+    background-color: green;
 }
 
 .handArea {
     grid-area: C;
     background-color: blue;
+    display: flex;
+    gap: 40px;
 }
