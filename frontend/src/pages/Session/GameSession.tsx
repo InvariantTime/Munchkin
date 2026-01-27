@@ -1,6 +1,7 @@
-import { CardBackType } from "../../api/Cards/Card";
+import { CardBackType, CardTypes } from "../../api/Cards/Card";
 import { CardBackView } from "../../components/Card/CardBackView";
-import { CardView } from "../../components/Card/CardView";
+import { HandDemo } from "../../components/Card/CardExample";
+import { MiniCardView } from "../../components/Card/MiniCardView";
 import "./GameSession.css"
 
 export const GameSession = () => {
@@ -17,7 +18,10 @@ export const GameSession = () => {
                 </div>
 
                  <div className="handArea">
-                    <CardView/>
+                    <MiniCardView type={CardTypes.Monster}/>
+                    <MiniCardView type={CardTypes.Clothes}/>
+                    <MiniCardView type={CardTypes.Curse}/>
+                    <MiniCardView type={CardTypes.Improvement}/>
                     <CardBackView type={CardBackType.Door}/>
                     <CardBackView type={CardBackType.Treasure}/>
                 </div>

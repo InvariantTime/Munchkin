@@ -12,7 +12,8 @@ export const CardBackView = ({type}: Props) =>
 
     return (
         <div className="h-60 w-40 inline-block">
-            <img src={src} className="w-full h-full"/>
+            <img src={src} className="w-full h-full"
+                draggable="false"/>
         </div>
     )
 }
