@@ -1,0 +1,13 @@
+
+.handContainer {
+    max-width: 600px;
+    width: 90vw;
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+.cardHandContainer {
+    position: absolute;
+    transform-origin: bottom center;
+}
